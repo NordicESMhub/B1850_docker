@@ -40,4 +40,6 @@ RUN sed -i -e "s/\$CESM_PES/$CESM_PES/g" /home/cesm/.cime/config_machines.xml &&
     
 WORKDIR /home/cesm/cases/B1850
 
-ENTRYPOINT ./case.submit
+COPY run_b1850 /home/cesm/cases/B1850
+
+ENTRYPOINT ./run_b1850
