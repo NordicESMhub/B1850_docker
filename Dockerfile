@@ -30,16 +30,8 @@ ENV AR=ar
 
 ENV USER=cesm
 
-ENV CESM_PES=4
+WORKDIR /home/cesm/cases
 
-RUN sed -i -e "s/\$CESM_PES/$CESM_PES/g" /home/cesm/.cime/config_machines.xml && \
-    create_newcase --case /home/cesm/cases/B1850 --compset B1850 \
-    --res f09_g17 --machine espresso --run-unsupported && \
-    cd /home/cesm/cases/B1850                          && \
-    ./case.setup && ./case.build
-    
-WORKDIR /home/cesm/cases/B1850
-
-COPY run_b1850 /home/cesm/cases/B1850
+COPY run_b1850 /home/cesm/cases
 
 ENTRYPOINT ./run_b1850
