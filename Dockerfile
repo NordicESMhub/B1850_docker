@@ -1,4 +1,4 @@
-FROM quay.io/biocontainers/cesm:2.1.1--py37he9b5208_1
+FROM bitnami/minideb:jessie
 
 #####EXTRA LABELS#####
 LABEL autogen="no" \ 
@@ -12,9 +12,35 @@ LABEL autogen="no" \
       
 MAINTAINER Anne Fouilloux <annefou@geo.uio.no>
 
+##ENTRYPOINT ./run_b1850
+# By default en_US.UTF-8 is not generated, and locale-gen is not installed
+# (comes with locales)
+# and uncomment the en_US.UTF-8 line from /etc/locale.gen and regenerate
+# AF: added csh and wget for CESM B1850 configuration (with ocean)
+RUN install_packages libgl1-mesa-glx locales openssh-client procps \
+    csh wget bzip2 ca-certificates curl git && \
+    sed -i 's/^# *\(en_US.UTF-8\)/\1/' /etc/locale.gen && locale-gen
+
+ENV LC_ALL=en_US.UTF-8 \
+    LANG=en_US.UTF-8
+
+
+# Install miniconda
+RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
+    /bin/bash ~/miniconda.sh -b -u -p /usr/local && \
+    rm ~/miniconda.sh && \
+    /usr/local/bin/conda config --add channels defaults && \
+    /usr/local/bin/conda config --add channels bioconda && \ 
+    /usr/local/bin/conda config --add channels conda-forge && \
+    /usr/local/bin/conda install cesm && \
+    /usr/local/bin/conda clean -tipsy && \
+    ln -s /usr/local/etc/profile.d/conda.sh /etc/profile.d/conda.sh && \
+    echo ". /usr/local/etc/profile.d/conda.sh" >> ~/.bashrc && \
+    echo "conda activate base" >> ~/.bashrc
+
 RUN ln -s /usr/local/bin/x86_64-conda_cos6-linux-gnu-ar /usr/local/bin/ar
 
-RUN adduser -D cesm -G users
+RUN adduser cesm --disabled-password && usermod -aG users cesm
 
 USER cesm
 
@@ -34,4 +60,6 @@ WORKDIR /home/cesm/cases
 
 COPY run_b1850 /home/cesm/cases
 
-ENTRYPOINT ./run_b1850
+CMD ["/bin/bash"]
+
+#ENTRYPOINT ./run_b1850
