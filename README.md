@@ -10,7 +10,7 @@ CESM docker container for F1850 compset and resolution f09_g17 using [bioconda c
 
 
 
-## Running F1850 with docker
+## Running B1850 with docker
 
 Make sure inputdata is available (it won't download it as we suppose it is already on disk). 
 - The location of the inputdata is `/opt/uio/inputdata` 
