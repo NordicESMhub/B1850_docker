@@ -1,11 +1,13 @@
 export CESM_PES=2
 
-sed -i -e "s/\$CESM_PES/$CESM_PES/g" /home/cesm/.cime/config_machines.xml
+sed -i -e "s/\$CESM_PES/$CESM_PES/g" $HOME/.cime/config_machines.xml
 
-create_newcase --case /home/cesm/cases/B1850 --compset B1850 \
-               --res f09_g17 --machine espresso --run-unsupported 
+cd $HOME/CESM/cime/scripts
 
-cd /home/cesm/cases/B1850
+./create_newcase --case $HOME/cases/B1850 --compset B1850 \
+                 --res f09_g17 --machine espresso --run-unsupported 
+
+cd $HOME/cases/B1850
 
 ./case.setup 
 
@@ -13,6 +15,6 @@ cd /home/cesm/cases/B1850
     
 ./case.submit
 
-mkdir -p /home/cesm/archive/cases
+mkdir -p $HOME/cases
 
-cp -R /home/cesm/cases/B1850 /home/cesm/archive/cases/.
+cp -R $HOME/cases/B1850 $HOME/archive/cases/.
