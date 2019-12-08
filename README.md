@@ -2,7 +2,7 @@
 Docker container for CESM compset B1850 resolution f09_g17
 
 
-CESM docker container for F1850 compset and resolution f09_g17 using [bioconda cesm docker](https://bioconda.github.io/recipes/cesm/README.html) as a base image.
+CESM docker container for B1850 compset and resolution f09_g17.
 
 - Input dataset is stored and available in zenodo.
 
@@ -25,8 +25,8 @@ mv inputdata_container inputdata
 - Model outputs are stored in `/opt/uio/archive` along with the `case` folder (it can be interesting to check timing).
 
 ```
-docker pull nordicesmhub/cesm_b1850:latest
-docker run -i -v /opt/uio/inputdata:/home/cesm/inputdata -v /opt/uio/archive:/home/cesm/archive  -t nordicesmhub/cesm_b1850:latest
+docker pull quay.io/nordicesmhub/cesm_b1850:latest
+docker run -i -v /opt/uio/inputdata:/home/cesm/inputdata -v /opt/uio/archive:/home/cesm/archive  -t quay.io/nordicesmhub/cesm_b1850:latest
 ```
 
 
