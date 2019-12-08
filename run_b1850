@@ -1,4 +1,4 @@
-export CESM_PES=2
+export CESM_PES=12
 
 sed -i -e "s/\$CESM_PES/$CESM_PES/g" $HOME/.cime/config_machines.xml
 

@@ -35,7 +35,11 @@ RUN cd $HOME \
 
 WORKDIR $HOME/cases
 
-COPY run_b1850 $HOME/cases
+COPY run_b1850case1 $HOME/cases
+COPY run_b1850case2 $HOME/cases
+COPY run_b1850case3 $HOME/cases
+COPY run_b1850case4 $HOME/cases
+COPY run_b1850case5 $HOME/cases
 
 CMD ["/bin/bash"]
 

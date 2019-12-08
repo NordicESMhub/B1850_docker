@@ -2,12 +2,9 @@
 Docker container for CESM compset B1850 resolution f09_g17
 
 
-CESM docker container for F1850 compset and resolution f09_g17 using [bioconda cesm docker](https://bioconda.github.io/recipes/cesm/README.html) as a base image.
-
 - Input dataset is stored and available in zenodo.
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3526181.svg)](https://doi.org/10.5281/zenodo.3526181)
-
 
 
 ## Running B1850 with docker
@@ -25,8 +22,17 @@ mv inputdata_container inputdata
 - Model outputs are stored in `/opt/uio/archive` along with the `case` folder (it can be interesting to check timing).
 
 ```
-docker pull nordicesmhub/cesm_b1850:latest
-docker run -i -v /opt/uio/inputdata:/home/cesm/inputdata -v /opt/uio/archive:/home/cesm/archive  -t nordicesmhub/cesm_b1850:latest
+docker pull quay.io/nordicesmhub/cesm_b1850:latest
+docker run -i -v /opt/uio/inputdata:/root/inputdata -v /opt/uio/archive:/root/archive  -t quay.io/nordicesmhub/cesm_b1850:latest
 ```
 
+### 5 different cases
+
+We have prepared 5 different cases for running the same case but with different number off nodes:
+
+- run_b1850case1: 4 nodes (12 processors per node) 
+- run_b1850case2: 8 nodes
+- run_b1850case3: 16 nodes
+- run_b1850case4: 42 nodes
+- run_b1850case5: 84 nodes
 

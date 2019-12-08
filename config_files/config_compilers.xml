@@ -12,14 +12,18 @@
     <MPICC>mpicc</MPICC>
     <MPICXX>mpicxx</MPICXX>
     <NETCDF_PATH>/usr</NETCDF_PATH>
+    <CFLAGS>
+      <append DEBUG="FALSE"> -mcmodel=medium</append>
+    </CFLAGS>
     <FFLAGS>
-      <append DEBUG="FALSE"> -O2 </append>
+      <append DEBUG="FALSE"> -O2 -mcmodel=medium</append>
       <append MODEL="micom"> -fdefault-real-8 </append>
       <append MODEL="cam"> -finit-local-zero </append>
     </FFLAGS>
     <SLIBS>
       <append> -L$(NETCDF_PATH)/lib -lnetcdff -lnetcdf -ldl </append>
       <append> -lblas -llapack -lgomp -lpthread -lm -fopenmp </append>
+      <append> -mcmodel=medium</append>
     </SLIBS>
   </compiler>
 </config_compilers>
