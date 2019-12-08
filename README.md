@@ -1,8 +1,6 @@
 # B1850_docker
+
 Docker container for CESM compset B1850 resolution f09_g17
-
-
-CESM docker container for B1850 compset and resolution f09_g17.
 
 - Input dataset is stored and available in zenodo.
 
@@ -28,5 +26,12 @@ mv inputdata_container inputdata
 docker pull quay.io/nordicesmhub/cesm_b1850:latest
 docker run -i -v /opt/uio/inputdata:/home/cesm/inputdata -v /opt/uio/archive:/home/cesm/archive  -t quay.io/nordicesmhub/cesm_b1850:latest
 ```
+Launch run_b1850 to run your case.
+
+## Customize your run
+
+By default it runs 5 days and uses 108 processors (piz daint configuration: 9 nodes with 12 processors per node).
+
+Update `run_b1850` to change the number of processors (CESM_PES); the duration of the run and any other namelist or code changes can be done as usual.
 
 
