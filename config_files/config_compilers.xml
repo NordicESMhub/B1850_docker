@@ -12,8 +12,11 @@
     <MPICC>mpicc</MPICC>
     <MPICXX>mpicxx</MPICXX>
     <NETCDF_PATH>/usr</NETCDF_PATH>
+    <CFLAGS>
+      <append DEBUG="FALSE"> -mcmodel=medium</append>
+    </CFLAGS>
     <FFLAGS>
-      <append DEBUG="FALSE"> -O2 </append>
+      <append DEBUG="FALSE"> -O2 -mcmodel=medium</append>
       <append MODEL="micom"> -fdefault-real-8 </append>
       <append MODEL="cam"> -finit-local-zero </append>
     </FFLAGS>
