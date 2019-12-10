@@ -14,7 +14,7 @@ MAINTAINER Anne Fouilloux <annefou@geo.uio.no>
 
 # Add csh for ocean component
 
-RUN apt-get install -y csh 
+RUN apt-get install -y vim 
 
 ENV USER=root
 ENV HOME=/root
